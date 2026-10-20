@@ -6,9 +6,8 @@ services:
       network: host
     container_name: ppat_app
     restart: unless-stopped
-    ports:
-      # Port diekspos secara lokal ke 127.0.0.1 agar aman dan hanya bisa diakses via Reverse Proxy Nginx Host
-      - "127.0.0.1:${APP_PORT:-8085}:80"
+    # Menggunakan host network agar bebas dari bridge virtual dan error iptables
+    network_mode: host
     volumes:
       # Mount folder database agar file database.sqlite persisten di host
       - ./database:/var/www/html/database

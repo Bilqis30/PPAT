@@ -60,7 +60,7 @@ RUN mkdir -p /var/www/html/database \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
 
 # Expose internal HTTP port
-EXPOSE 80
+EXPOSE 8085
 
 # Run entrypoint script
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
