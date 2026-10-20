@@ -1,0 +1,16 @@
+.git
+.github
+.agents
+.claude
+.cursor
+node_modules
+npm-debug.log
+yarn-error.log
+.env
+.env.backup
+.env.production
+.phpunit.result.cache
+tests
+docker-compose*.yml
+README*.md
+deploy
