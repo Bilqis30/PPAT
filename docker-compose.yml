@@ -3,6 +3,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile
+      network: host
     container_name: ppat_app
     restart: unless-stopped
     ports:
