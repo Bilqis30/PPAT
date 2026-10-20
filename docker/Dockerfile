@@ -36,6 +36,7 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Copy configuration files
 COPY docker/php.ini /usr/local/etc/php/conf.d/custom.ini
+COPY docker/php-fpm.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 COPY docker/nginx.conf /etc/nginx/http.d/default.conf
 COPY docker/supervisord.conf /etc/supervisor/supervisord.conf
 COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
@@ -60,7 +61,7 @@ RUN mkdir -p /var/www/html/database \
     && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
 
 # Expose internal HTTP port
-EXPOSE 8085
+EXPOSE 8095
 
 # Run entrypoint script
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
