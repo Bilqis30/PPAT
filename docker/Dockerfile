@@ -6,39 +6,30 @@ WORKDIR /var/www/html
 # Set timezone environment variable
 ENV TZ=Asia/Jakarta
 
-# Install system dependencies, Nginx, Supervisor, tzdata, and build tools
+# Install system dependencies, Nginx, Supervisor, tzdata, and utilities
 RUN apk add --no-cache \
     nginx \
     supervisor \
     curl \
     bash \
     tzdata \
-    sqlite-libs \
-    sqlite-dev \
-    libpng-dev \
-    libjpeg-turbo-dev \
-    freetype-dev \
-    libzip-dev \
-    icu-dev \
-    oniguruma-dev \
     git \
     unzip \
     && cp /usr/share/zoneinfo/Asia/Jakarta /etc/localtime \
     && echo "Asia/Jakarta" > /etc/timezone
 
-# Configure & install PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) \
-        pdo \
-        pdo_sqlite \
-        bcmath \
-        curl \
-        mbstring \
-        opcache \
-        pcntl \
-        zip \
-        intl \
-        gd
+# Install official PHP extension installer helper
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
+
+# Install PHP extensions required by Laravel & SQLite
+RUN install-php-extensions \
+    pdo_sqlite \
+    bcmath \
+    opcache \
+    pcntl \
+    zip \
+    intl \
+    gd
 
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
