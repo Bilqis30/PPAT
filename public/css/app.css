@@ -1,0 +1,127 @@
+/**
+ * WebArsipp - Core Application Stylesheet
+ * Clean, modern white & slate-gray theme with refined mobile responsiveness.
+ */
+
+:root {
+    --font-primary: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --color-bg: #f8fafc;
+    --color-surface: #ffffff;
+    --color-border: #e2e8f0;
+    --color-text-main: #0f172a;
+    --color-text-muted: #64748b;
+}
+
+/* Base Body Styling */
+body {
+    font-family: var(--font-primary);
+    background-color: var(--color-bg);
+    color: var(--color-text-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Mobile Sidebar Drawer Styling */
+#main-sidebar {
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+@media (max-width: 1023px) {
+    #main-sidebar {
+        width: 280px;
+        max-width: 85vw;
+        box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.15), 0 8px 10px -6px rgba(15, 23, 42, 0.1);
+    }
+}
+
+/* Sidebar Backdrop */
+#sidebar-backdrop {
+    transition: opacity 0.25s ease-in-out;
+}
+
+/* Touch-friendly interactive items on mobile */
+@media (max-width: 640px) {
+    button, 
+    a, 
+    input, 
+    select, 
+    textarea {
+        touch-action: manipulation;
+    }
+
+    /* Modal adjustments on small screens */
+    #pdf-preview-modal .modal-card {
+        height: 94vh !important;
+        margin: 8px;
+        border-radius: 1rem;
+    }
+}
+
+/* Global table responsive container with slick slim scrollbar */
+.table-responsive-container {
+    position: relative;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-responsive-container::-webkit-scrollbar {
+    height: 6px;
+}
+.table-responsive-container::-webkit-scrollbar-track {
+    background: #f8fafc;
+    border-radius: 9999px;
+}
+.table-responsive-container::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+}
+.table-responsive-container::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Subtle micro animations */
+.transition-smooth {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* PDF Preview Modal Animation */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-animate-in {
+    animation: modalFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
