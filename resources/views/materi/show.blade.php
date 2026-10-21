@@ -3,7 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $materi->title }} - Kantor PPAT Iwan Kurniawan</title>
+
+    @php
+        $cleanDesc = Str::limit(trim(preg_replace('/\s+/', ' ', strip_tags($materi->excerpt ?: $materi->content))), 155);
+    @endphp
+    @include('partials.seo-meta', [
+        'title' => $materi->title . ' - Kantor PPAT Iwan Kurniawan Muara Enim',
+        'description' => $cleanDesc,
+        'keywords' => $materi->title . ', ' . ($materi->category ?? 'Artikel') . ', Hukum Pertanahan, PPAT Muara Enim, PPAT Iwan Kurniawan',
+        'canonical' => route('materi.show', $materi->slug),
+        'type' => 'article',
+        'image' => $materi->cover_image_url,
+        'breadcrumb' => [
+            ['name' => 'Beranda', 'url' => route('home')],
+            ['name' => 'Materi', 'url' => route('materi.index')],
+            ['name' => $materi->title, 'url' => route('materi.show', $materi->slug)],
+        ],
+        'articleSchema' => [
+            'headline' => $materi->title,
+            'description' => $cleanDesc,
+            'image' => $materi->cover_image_url,
+            'datePublished' => ($materi->published_at ?? $materi->created_at ?? now())->toAtomString(),
+            'dateModified' => ($materi->updated_at ?? $materi->published_at ?? $materi->created_at ?? now())->toAtomString(),
+            'author' => $materi->author_name ?: 'PPAT Iwan Kurniawan, SH., MH., M.Kn',
+        ]
+    ])
 
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,10 +62,10 @@
     <!-- Main Navbar -->
     <header class="sticky top-0 z-40 bg-gradient-to-r from-[#630504]/95 via-[#2d0808]/95 to-[#1c1d1e]/95 backdrop-blur-md border-b border-[#760604]/60 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                <img src="{{ asset('images/logo-ppat.jpg') }}" alt="Logo IPPAT" class="w-11 h-11 object-contain shrink-0 rounded-full shadow-md border border-[#760604]/50 group-hover:scale-105 transition bg-white p-0.5">
+            <a href="{{ route('home') }}" class="flex items-center gap-3 group" title="Kantor PPAT Iwan Kurniawan, SH., MH., M.Kn Muara Enim">
+                <img src="{{ asset('images/logo-ppat.jpg') }}" alt="Logo Resmi IPPAT PPAT Iwan Kurniawan Muara Enim" class="w-11 h-11 object-contain shrink-0 rounded-full shadow-md border border-[#760604]/50 group-hover:scale-105 transition bg-white p-0.5">
                 <div class="leading-tight">
-                    <h1 class="font-bold text-sm sm:text-base text-white tracking-tight">PPAT Iwan Kurniawan, SH., MH., M.Kn</h1>
+                    <span class="block font-bold text-sm sm:text-base text-white tracking-tight">PPAT Iwan Kurniawan, SH., MH., M.Kn</span>
                     <p class="text-xs text-slate-300 font-medium">Pejabat Pembuat Akta Tanah &bull; Kab. Muara Enim</p>
                 </div>
             </a>

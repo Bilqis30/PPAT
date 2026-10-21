@@ -3,7 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Materi &amp; Artikel - Kantor PPAT Iwan Kurniawan, SH., MH., M.Kn</title>
+
+    @include('partials.seo-meta', [
+        'title' => 'Materi & Edukasi Hukum Pertanahan - PPAT Iwan Kurniawan Muara Enim',
+        'description' => 'Kumpulan artikel dan materi edukasi hukum pertanahan, agraria, tata cara pembuatan akta tanah, dan informasi legalitas dari Kantor PPAT Iwan Kurniawan Muara Enim.',
+        'keywords' => 'Materi Hukum Pertanahan, Artikel PPAT Muara Enim, Edukasi Hukum Agraria, Sertifikat Tanah Muara Enim, Pembuatan Akta PPAT, Kantor PPAT Iwan Kurniawan',
+        'canonical' => route('materi.index'),
+        'breadcrumb' => [
+            ['name' => 'Beranda', 'url' => route('home')],
+            ['name' => 'Materi & Edukasi Pertanahan', 'url' => route('materi.index')],
+        ]
+    ])
 
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -39,10 +49,10 @@
     <header class="sticky top-0 z-40 bg-gradient-to-r from-[#630504]/95 via-[#2d0808]/95 to-[#1c1d1e]/95 backdrop-blur-md border-b border-[#760604]/60 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Brand Logo & Office Identity -->
-            <a href="{{ route('home') }}" class="flex items-center gap-3 group">
-                <img src="{{ asset('images/logo-ppat.jpg') }}" alt="Logo IPPAT" class="w-11 h-11 object-contain shrink-0 rounded-full shadow-md border border-[#760604]/50 group-hover:scale-105 transition bg-white p-0.5">
+            <a href="{{ route('home') }}" class="flex items-center gap-3 group" title="Kantor PPAT Iwan Kurniawan, SH., MH., M.Kn Muara Enim">
+                <img src="{{ asset('images/logo-ppat.jpg') }}" alt="Logo Resmi IPPAT PPAT Iwan Kurniawan Muara Enim" class="w-11 h-11 object-contain shrink-0 rounded-full shadow-md border border-[#760604]/50 group-hover:scale-105 transition bg-white p-0.5">
                 <div class="leading-tight">
-                    <h1 class="font-bold text-sm sm:text-base text-white tracking-tight">PPAT Iwan Kurniawan, SH., MH., M.Kn</h1>
+                    <span class="block font-bold text-sm sm:text-base text-white tracking-tight">PPAT Iwan Kurniawan, SH., MH., M.Kn</span>
                     <p class="text-xs text-slate-300 font-medium">Pejabat Pembuat Akta Tanah &bull; Kab. Muara Enim</p>
                 </div>
             </a>
@@ -115,9 +125,9 @@
                     <i data-lucide="book-open" class="w-3.5 h-3.5 text-red-200"></i>
                     <span>Publikasi &amp; Edukasi Hukum Pertanahan</span>
                 </div>
-                <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight drop-shadow-md">
-                    Materi &amp; Artikel
-                </h2>
+                <h1 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight drop-shadow-md">
+                    Materi &amp; Edukasi Hukum Pertanahan PPAT Muara Enim
+                </h1>
                 <p class="text-sm sm:text-base text-slate-100 mt-4 leading-relaxed max-w-2xl drop-shadow-sm">
                     Kumpulan wawasan, edukasi hukum pertanahan, kajian lingkungan, serta dokumentasi materi resmi dari Kantor PPAT Iwan Kurniawan.
                 </p>

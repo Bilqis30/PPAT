@@ -9,6 +9,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LayananController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\WhatsappSettingController;
 use App\Models\DriveFile;
 use App\Models\DriveFolder;
@@ -21,11 +22,12 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-// 1. Public Landing Page, Layanan & Materi
+// 1. Public Landing Page, Layanan, Materi & Sitemap
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/layanan', [LayananController::class, 'index'])->name('layanan.index');
 Route::get('/materi', [MateriController::class, 'index'])->name('materi.index');
 Route::get('/materi/{slug}', [MateriController::class, 'show'])->name('materi.show');
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 // 2. Dedicated Login & Authentication Routes (/admin, /login, /portal)
 Route::get('/admin', [AuthController::class, 'showLogin'])->name('login');
